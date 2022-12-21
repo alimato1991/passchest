@@ -15,7 +15,7 @@ class Logout extends Component
     /**
      * Logout user
      */
-    public function logout(Request $request)
+    public function logout()
     {
         auth()->logout();
 
