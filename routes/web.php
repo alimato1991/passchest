@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Livewire\Entries\Entries;
+use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Notes\Notes;
+use App\Http\Livewire\Auth\Register;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Entries\Entries;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,5 +17,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', Entries::class)->name('entries');
-Route::get('/notes', Notes::class)->name('notes');
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('/', Entries::class)->name('entries');
+    Route::get('/notes', Notes::class)->name('notes');    
+});
+Route::group(['middleware' => 'guest'], function() {
+    Route::get('/login', Login::class)->name('login');
+    Route::get('/register', Register::class)->name('register');
+});

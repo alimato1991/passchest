@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class Notes extends Component
 {
-    public $notes, $title, $note_text, $note_id;
+    public $notes, $title, $note, $note_id;
     public $updateMode = false;
 
     /**
@@ -25,7 +25,7 @@ class Notes extends Component
     public function resetInput()
     {
         $this->title = '';
-        $this->note_text = ''; 
+        $this->note = ''; 
     }
 
     /**
@@ -54,7 +54,7 @@ class Notes extends Component
         $note = Note::findOrFail($id);
         $this->note_id = $id;
         $this->title = $note->title;
-        $this->note_text = $note->note;
+        $this->note = $note->note;
 
         $this->updateMode = true;
     }

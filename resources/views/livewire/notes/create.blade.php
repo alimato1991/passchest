@@ -11,8 +11,8 @@
             </fieldset>
             <fieldset>
                 <label for="note_text">Note:</label>
-                <textarea name="note_text" id="note_text" cols="30" rows="10" wire:model="note_text"></textarea>
-                @error('note_text')
+                <textarea name="note_text" id="note_text" cols="30" rows="10" wire:model="note"></textarea>
+                @error('note')
                     <span class="validation">{{ $message }}</span>
                 @enderror
             </fieldset>
