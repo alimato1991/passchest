@@ -1,0 +1,50 @@
+@import "_variables";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../images/main-bg.svg');
+    background-repeat: repeat;
+    font-family: $content-font;
+    font-size: 14px;
+    line-height: 1.1;
+    color: $secondary-color;
+}
+
+a {
+    color: $accent-color;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.app {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 1140px;
+    height: 650px;
+    background-color: $bg-color;
+    background-image: url('../images/app-bg.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    border-radius: 15px;
+    box-shadow: 0 0 24px -3px rgba(0,0,0,0.80);
+    -webkit-box-shadow: 0 0 24px -3px rgba(0,0,0,0.80);
+    -moz-box-shadow: 0 0 24px -3px rgba(0,0,0,0.80);
+}

@@ -1,5 +1,5 @@
 <section>
-    <div class="form">
+    <div class="add-form">
         <form action="/" method="POST" enctype="multipart/form-data">
             @csrf
             <fieldset>
