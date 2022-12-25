@@ -17,7 +17,6 @@
     <body>
         <div class="app">
              <x-menu></x-menu>
-             <x-top-bar></x-top-bar>
             {{ $slot }}
         </div>
 

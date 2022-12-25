@@ -1,6 +1,6 @@
-<div class="form">
-    <form method="POST" action="/">
+<div class="logout-form">
+    <form wire:submit.prevent="logout">
         @csrf
-        <button type="submit" wire:click.prevent="logout">Logout</button>
+        <button type="submit"><i class="fa-solid fa-door-open"></i></button>
     </form>
 </div>

@@ -61,6 +61,7 @@ class Entries extends Component
         $this->email = $entry->email;
         $this->password = $entry->password;
         $this->website = $entry->website;
+        $this->website = $entry->note;
 
         $this->updateMode = true;
     }

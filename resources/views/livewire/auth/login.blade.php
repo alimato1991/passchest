@@ -1,4 +1,5 @@
 <div class="form">
+    <x-loader></x-loader>
     <div class="form__image">
         <img src="/images/login.png" alt="login">
     </div>
@@ -7,7 +8,7 @@
         <div class="form__input">
             <label for="email">Email</label>
             <input type="email" id="email" name="email" wire:model="signIn.email" placeholder="Email">
-            <div class="form-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div class="form__icon"><i class="fa-solid fa-envelope"></i></div>
             @error('signIn.email')
             <span class="validation"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</span>
             @enderror
@@ -15,7 +16,7 @@
         <div class="form__input">
             <label for="password">Password</label>
             <input type="password" id="password" name="password" wire:model="signIn.password" placeholder="Password">
-            <div class="form-icon"><i class="fa-solid fa-lock"></i></div>
+            <div class="form__icon"><i class="fa-solid fa-lock"></i></div>
             @error('signIn.password')
             <span class="validation"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</span>
             @enderror

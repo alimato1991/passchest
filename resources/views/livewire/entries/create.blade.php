@@ -1,44 +1,57 @@
-<section>
-    <div class="form">
-        <form action="/" method="POST" enctype="multipart/form-data">
+<section class="forms-section">
+    <x-loader></x-loader>
+    <div class="add-form">
+        <form wire:submit.prevent="store">
             @csrf
-            <fieldset>
-                <label for="entry_name">Name:</label>
-                <input type="text" id="entry_name" name="name" wire:model="name">
+            <div class="form__input">
+                <label for="form__name">Name:</label>
+                <input type="text" id="form__label" name="name" wire:model="name">
+                <div class="form__icon">
+                    <i class="fa-solid fa-user"></i>
+                </div>
                 @error('name')
                     <span class="validation">{{ $message }}</span>
                 @enderror
-            </fieldset>
-            <fieldset>
-                <label for="entry_email">Email/Userbane:</label>
-                <input type="text" id="entry_email" name="email" wire:model="email">
+            </div>
+            <div class="form__input">
+                <label for="form__email">Email/Username:</label>
+                <input type="text" id="form__email" name="email" wire:model="email">
+                <div class="form__icon">
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
                 @error('email')
                     <span class="validation">{{ $message }}</span>
                 @enderror
-            </fieldset>
-            <fieldset>
-                <label for="entry_password">Password:</label>
-                <input type="text" id="entry_password" name="password" wire:model="password">
+            </div>
+            <div class="form__input">
+                <label for="form__password">Password:</label>
+                <input type="text" id="form__password" name="password" wire:model="password">
+                <div class="form__icon">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
                 @error('password')
                     <span class="validation">{{ $message }}</span>
                 @enderror
-            </fieldset>
-            <fieldset>
-                <label for="entry_website">Website:</label>
-                <input type="text" id="entry_website" name="website" wire:model="website">
+            </div>
+            <div class="form__input">
+                <label for="form__website">Website:</label>
+                <input type="text" id="form__website" name="website" wire:model="website">
+                <div class="form__icon">
+                    <i class="fa-solid fa-link"></i>
+                </div>
                 @error('website')
                     <span class="validation">{{ $message }}</span>
                 @enderror
-            </fieldset>
-            <fieldset>
-                <label for="entry_note">Note:</label>
-                <textarea name="note" id="entry_note" cols="30" rows="10" wire:model="note"></textarea>
+            </div>
+            <div class="form__input">
+                <label for="form__note">Note:</label>
+                <textarea name="note" id="form__note" cols="30" rows="10" wire:model="note"></textarea>
                 @error('note')
                     <span class="validation">{{ $message }}</span>
                 @enderror
-            </fieldset>
-            <div class="actions">
-                <button class="btn btn-save" wire:click.prevent="store()">Save</button>
+            </div>
+            <div class="form__actions">
+                <button class="form__button" type="submit">Save</button>
             </div>
         </form>
     </div>

@@ -1,0 +1,140 @@
+@import '_variables';
+
+.pre-loader-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba($primary-color, 0.95);
+    border-radius: 20px;
+    z-index: 1;
+
+    .pre-loader {
+        position: relative;
+        display: block;
+        width: 96px;
+        height: 96px;
+        font-size: 0;
+        color: $accent-color;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        
+        & > div {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            display: inline-block;
+            float: none;
+            background-color: currentColor;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 24px;
+            height: 24px;
+            margin-top: -12px;
+            margin-left: -12px;
+            border-radius: 100%;
+            -webkit-animation: pre-loader 1s infinite linear;
+            -moz-animation: pre-loader 1s infinite linear;
+                -o-animation: pre-loader 1s infinite linear;
+                    animation: pre-loader 1s infinite linear;
+        }
+        
+        & > div:nth-child(1) {
+            top: 5%;
+            left: 50%;
+            -webkit-animation-delay: -.875s;
+            -moz-animation-delay: -.875s;
+                -o-animation-delay: -.875s;
+                    animation-delay: -.875s;
+        }
+
+        & > div:nth-child(2) {
+            top: 18.1801948466%;
+            left: 81.8198051534%;
+            -webkit-animation-delay: -.75s;
+            -moz-animation-delay: -.75s;
+                -o-animation-delay: -.75s;
+                    animation-delay: -.75s;
+        }
+
+        & > div:nth-child(3) {
+            top: 50%;
+            left: 95%;
+            -webkit-animation-delay: -.625s;
+            -moz-animation-delay: -.625s;
+                -o-animation-delay: -.625s;
+                    animation-delay: -.625s;
+        }
+
+        & > div:nth-child(4) {
+            top: 81.8198051534%;
+            left: 81.8198051534%;
+            -webkit-animation-delay: -.5s;
+            -moz-animation-delay: -.5s;
+                -o-animation-delay: -.5s;
+                    animation-delay: -.5s;
+        }
+
+        & > div:nth-child(5) {
+            top: 94.9999999966%;
+            left: 50.0000000005%;
+            -webkit-animation-delay: -.375s;
+               -moz-animation-delay: -.375s;
+                 -o-animation-delay: -.375s;
+                    animation-delay: -.375s;
+        }
+
+        & > div:nth-child(6) {
+            top: 81.8198046966%;
+            left: 18.1801949248%;
+            -webkit-animation-delay: -.25s;
+            -moz-animation-delay: -.25s;
+                -o-animation-delay: -.25s;
+                    animation-delay: -.25s;
+        }
+
+        & > div:nth-child(7) {
+            top: 49.9999750815%;
+            left: 5.0000051215%;
+            -webkit-animation-delay: -.125s;
+               -moz-animation-delay: -.125s;
+                 -o-animation-delay: -.125s;
+                    animation-delay: -.125s;
+        }
+
+        & > div:nth-child(8) {
+            top: 18.179464974%;
+            left: 18.1803700518%;
+            -webkit-animation-delay: 0s;
+               -moz-animation-delay: 0s;
+                 -o-animation-delay: 0s;
+                    animation-delay: 0s;
+        }
+    }
+}
+
+/*
+ * Animation
+ */
+@keyframes pre-loader {
+    50% {
+        opacity: .25;
+        -webkit-transform: scale(.5);
+           -moz-transform: scale(.5);
+             -o-transform: scale(.5);
+                transform: scale(.5);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+           -moz-transform: scale(1);
+             -o-transform: scale(1);
+                transform: scale(1);
+    }
+}

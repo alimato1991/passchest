@@ -23,6 +23,12 @@ body {
     color: $secondary-color;
 }
 
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
 a {
     color: $accent-color;
     text-decoration: none;
@@ -43,7 +49,7 @@ a {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50% 50%;
-    border-radius: 15px;
+    border-radius: 20px;
     box-shadow: 0 0 24px -3px rgba(0,0,0,0.80);
     -webkit-box-shadow: 0 0 24px -3px rgba(0,0,0,0.80);
     -moz-box-shadow: 0 0 24px -3px rgba(0,0,0,0.80);
