@@ -9,10 +9,12 @@
     <div class="entry-wrapper">
         <div class="entry-list">
             @foreach ($notes as $note )
-            <div class="entry-item" wire:click.prevent="edit({{ $note->id }})">
-                <div class="entry">
-                    <div class="entry-name">{{ $note->title }}</div>
-                    <div class="entry-email">{{ $note->note }}</div>
+            <div wire:key="note-{{ $note->id }}">
+                <div class="entry-item" wire:click="edit({{ $note->id }})">
+                    <div class="entry">
+                        <div class="entry-name">{{ $note->title }}</div>
+                        <div class="entry-email">{{ $note->note }}</div>
+                    </div>
                 </div>
             </div>
             @endforeach
