@@ -1,6 +1,7 @@
 <div class=forms-section>
+    <x-loader></x-loader>
     <div class="add-form">
-        <form wire:submit.prevent="store">
+        <form action="/notes" wire:submit.prevent="store">
             @csrf
             <div class="form__input">
                 <label for="title">Note Title:</label>

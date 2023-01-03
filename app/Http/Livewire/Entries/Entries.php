@@ -4,11 +4,14 @@ namespace App\Http\Livewire\Entries;
 
 use App\Models\Entry;
 use Livewire\Component;
+use Illuminate\Support\Facades\Log;
 
 class Entries extends Component
 {
-    public $entries, $name, $email, $password, $website, $note, $entry_id;
+    public $entries, $entry, $name, $email, $password, $website, $note, $entry_id;
     public $updateMode = false;
+    public $singleMode = false;
+    public $addNew = false;
 
     /**
      * Get all the saved account details
@@ -31,6 +34,11 @@ class Entries extends Component
         $this->note = '';
     }
 
+    public function addNew()
+    {
+        $this->addNew = true;
+    }
+
     /**
      * Create a new account details 
      */
@@ -46,6 +54,8 @@ class Entries extends Component
 
         Entry::create($newEntry);
 
+        $this->addNew = false;
+
         session()->flash('message', 'Added');
         $this->resetInput();
     }
@@ -56,14 +66,25 @@ class Entries extends Component
     public function edit($id)
     {
         $entry = Entry::findOrFail($id);
-        $this->entry_id = $id;
         $this->name = $entry->name;
         $this->email = $entry->email;
         $this->password = $entry->password;
         $this->website = $entry->website;
-        $this->website = $entry->note;
-
+        $this->note = $entry->note;
         $this->updateMode = true;
+        $this->singleMode = false;
+    }
+
+    /**
+     * Display a single saved account details by ID 
+     */
+    public function show($id)
+    {
+        $entry = Entry::findOrFail($id);
+        $this->entry = $entry;
+        $this->singleMode = true;
+        $this->updateMode = false;
+        $this->emit('showSingle', $entry->id);
     }
 
     /**
@@ -72,6 +93,8 @@ class Entries extends Component
     public function cancel()
     {
         $this->updateMode = false;
+        $this->addNew = false;
+        $this->singleMode = true;
         $this->resetInput();
     }
 
@@ -98,6 +121,7 @@ class Entries extends Component
         ]);
 
         $this->updateMode = false;
+        $this->singleMode = true;
 
         session()->flash('message', 'Updated');
         $this->resetInput();
@@ -108,7 +132,7 @@ class Entries extends Component
      */
     public function delete($id)
     {
-        Entry::find($id)->delete();
-        session()->flash('message', 'Deleted');
+        $entry = Entry::findOrFail($id);
+        $entry->delete();
     }
 }

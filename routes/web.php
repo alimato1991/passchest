@@ -5,6 +5,7 @@ use App\Http\Livewire\Notes\Notes;
 use App\Http\Livewire\Auth\Register;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Entries\Entries;
+use App\Http\Livewire\Entries\Single;
 
 /*
 |--------------------------------------------------------------------------

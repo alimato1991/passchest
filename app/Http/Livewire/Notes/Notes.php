@@ -7,8 +7,10 @@ use Livewire\Component;
 
 class Notes extends Component
 {
-    public $notes, $title, $note, $note_id;
+    public $notes, $note, $title, $note_text, $note_id;
     public $updateMode = false;
+    public $singleMode = false;
+    public $addNew = false;
 
     /**
      * Get all secure notes
@@ -25,7 +27,14 @@ class Notes extends Component
     public function resetInput()
     {
         $this->title = '';
-        $this->note = ''; 
+        $this->note_text = ''; 
+    }
+
+    public function addNew()
+    {
+        $this->addNew = true;
+        $this->updateMode = false;
+        $this->singleMode = false;
     }
 
     /**
@@ -40,7 +49,7 @@ class Notes extends Component
 
         Note::create($newNote);
 
-        $this->updateMode = true;
+        $this->addNew = false;
 
         session()->flash('message', 'Added');
         $this->resetInput();
@@ -54,9 +63,22 @@ class Notes extends Component
         $note = Note::findOrFail($id);
         $this->note_id = $id;
         $this->title = $note->title;
-        $this->note = $note->note;
+        $this->note_text = $note->note;
 
         $this->updateMode = true;
+        $this->singleMode = false;
+    }
+
+    /**
+     * Display a single secure note
+     */
+    public function show($id)
+    {
+        $note = Note::findOrFail($id);
+        $this->note = $note;
+        $this->updateMode = false;
+        $this->singleMode = true;
+        $this->emit('showSingle', $note->id);
     }
 
     /**
@@ -65,6 +87,7 @@ class Notes extends Component
     public function cancel()
     {
         $this->updateMode = false;
+        $this->singleMode = true;
         $this->resetInput();
     }
 
@@ -81,7 +104,7 @@ class Notes extends Component
         $note = Note::find($this->note_id);
         $note->update([
             'title' => $this->title,
-            'note' => $this->note
+            'note' => $this->note_text
         ]);
 
         $this->updateMode = false;

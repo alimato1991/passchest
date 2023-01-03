@@ -1,7 +1,7 @@
 <div class="forms-section">
     <x-loader></x-loader>
     <div class="update-form">
-        <form wire:submit.prevent="update">
+        <form action="/" method="POST" wire:submit.prevent="update">
             @csrf
             <div class="form__input">
                 <label for="name">Name:</label>
@@ -43,7 +43,7 @@
             <div class="form__actions">
                 <button class="form__button" type="submit">Update</button>
                 <button class="form__button cancel" wire:click.prevent="cancel">Cancel</button>
-                {{-- <button class="form__button delete" wire:click.prevent="delete"><i class="fa-solid fa-trash"></i></button> --}}
+                {{-- <button class="form__button delete" wire:click.prevent="delete{{ $entries->id }}"><i class="fa-solid fa-trash"></i></button> --}}
             </div>
         </form>
     </div>

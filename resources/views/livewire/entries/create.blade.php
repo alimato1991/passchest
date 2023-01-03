@@ -1,10 +1,10 @@
 <div class="forms-section">
     <x-loader></x-loader>
     <div class="add-form">
-        <form wire:submit.prevent="store">
+        <form action="/" method="POST" wire:submit.prevent="store">
             @csrf
             <div class="form__input">
-                <label for="form__name">Name:</label>
+                <label for="name">Name:</label>
                 <input type="text" id="form__label" name="name" wire:model.defer="name">
                 <div class="form__icon">
                     <i class="fa-solid fa-user"></i>
@@ -12,7 +12,7 @@
                 <span class="validation">@error('name'){{ $message }}@enderror</span>
             </div>
             <div class="form__input">
-                <label for="form__email">Email/Username:</label>
+                <label for="email">Email/Username:</label>
                 <input type="text" id="form__email" name="email" wire:model.defer="email">
                 <div class="form__icon">
                     <i class="fa-solid fa-envelope"></i>
@@ -20,7 +20,7 @@
                 <span class="validation">@error('email'){{ $message }}@enderror</span>
             </div>
             <div class="form__input">
-                <label for="form__password">Password:</label>
+                <label for="password">Password:</label>
                 <input type="text" id="form__password" name="password" wire:model.defer="password">
                 <div class="form__icon">
                     <i class="fa-solid fa-lock"></i>
@@ -28,7 +28,7 @@
                 <span class="validation">@error('password'){{ $message }}@enderror</span>
             </div>
             <div class="form__input">
-                <label for="form__website">Website:</label>
+                <label for="website">Website:</label>
                 <input type="text" id="form__website" name="website" wire:model.defer="website">
                 <div class="form__icon">
                     <i class="fa-solid fa-link"></i>
@@ -36,7 +36,7 @@
                 <span class="validation">@error('website'){{ $message }}@enderror</span>
             </div>
             <div class="form__input">
-                <label for="form__note">Note:</label>
+                <label for="note">Note:</label>
                 <textarea name="note" id="form__note" cols="30" rows="10" wire:model.defer="note"></textarea>
                 <span class="validation">@error('note'){{ $message }}@enderror</span>
             </div>
