@@ -1,0 +1,57 @@
+@import "_variables";
+
+.single-item-container {
+    position: relative;
+    padding: 50px 0;
+    width: 400px;
+
+    h2 {
+        margin-bottom: 30px;
+        font-size: 35px;
+        font-family: $content-font;
+        color: $third-color;
+        text-align: center;
+    }
+
+    .single-item-card {
+        border-radius: 15px;
+        border: 1px solid rgba($third-color, 0.3);
+        background-color: $bg-color;
+
+        .single-item {
+            padding: 10px 20px;
+            border-bottom: 1px solid rgba($third-color, 0.3);
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            .item-label {
+                font-size: 13px;
+                margin-bottom: 5px;
+            }
+
+            .item-title {
+                font-size: 15px;
+                color: $third-color;
+            }
+        }
+    }
+
+    .form__button {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        border: 0;
+        background-color: transparent;
+        color: $accent-color;
+        cursor: pointer; 
+        transition: all ease 0.3s;
+
+        &.edit {
+            right: 60px;
+            color: $third-color;
+        }
+    }
+}
+

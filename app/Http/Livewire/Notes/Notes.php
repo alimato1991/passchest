@@ -78,6 +78,7 @@ class Notes extends Component
         $this->note = $note;
         $this->updateMode = false;
         $this->singleMode = true;
+        $this->addNew = false;
         $this->emit('showSingle', $note->id);
     }
 
@@ -118,7 +119,9 @@ class Notes extends Component
      */
     public function delete($id)
     {
-        Note::find($id)->delete();
-        session()->flash('message', 'Removed');
+        $note = Note::find($id);
+        $note->delete();
+        $this->singleMode = false;
+        $this->render();
     }
 }

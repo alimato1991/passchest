@@ -1,4 +1,4 @@
-<div class="forms-section">
+<div>
     <x-loader></x-loader>
     <div class="update-form">
         <form action="/notes" wire:submit.prevent="update">

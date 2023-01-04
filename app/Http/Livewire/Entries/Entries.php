@@ -37,6 +37,7 @@ class Entries extends Component
     public function addNew()
     {
         $this->addNew = true;
+        $this->singleMode = false;
     }
 
     /**
@@ -84,6 +85,7 @@ class Entries extends Component
         $this->entry = $entry;
         $this->singleMode = true;
         $this->updateMode = false;
+        $this->addNew = false;
         $this->emit('showSingle', $entry->id);
     }
 
@@ -134,5 +136,6 @@ class Entries extends Component
     {
         $entry = Entry::findOrFail($id);
         $entry->delete();
+        $this->singleMode = false;
     }
 }

@@ -3,45 +3,28 @@
 .content {
     display: flex;
     flex-direction: row;
-    width: 960px;
+    flex: 0 0 940px;
 
     .entry-wrapper {
-        width: 350px;
+        position: relative;
+        flex: 0 0 350px;
         order: 1;
 
         .entry-list {
-            margin: 15px 0;
             height: 620px;
-            border-right: 2px solid rgba($third-color, 0.5);
+            padding: 56px 0 45px;
             overflow-y: scroll;
 
             .entry-item {
                 position: relative;
                 padding: 10px 20px;
                 cursor: pointer;
+                transition: all ease 0.3s;
                 z-index: 1;
 
-                &:before {
-                    content: '';
-                    position: absolute; 
-                    top: 0;
-                    left: 0;
-                    bottom: 0;
-                    width: 0;
-                    border-radius: 0 15px 15px 0;
-                    background-color: rgba($primary-color, 0.5);
-                    transition: all ease-out 0.3s;
-                    z-index: -1;
-                    box-shadow: 0;
-                }
-
                 &:hover {
-                    &:before {
-                        width: 90%;
-                        box-shadow: 0px 0px 10px 0px rgba(224,251,252,0.75);    
-                        -webkit-box-shadow: 0px 0px 10px 0px rgba(224,251,252,0.75);
-                        -moz-box-shadow: 0px 0px 10px 0px rgba(224,251,252,0.75);
-                    }
+                    background-color: $bg-color;
+                    box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.14), 0px 3px 14px 6px rgba(0, 0, 0, 0.12), 0px 5px 5px rgba(0, 0, 0, 0.2);
                 }
 
                 .entry {
@@ -57,6 +40,51 @@
                         font-style: italic;
                         color: $secondary-color;
                     }
+                }
+            }
+
+            .empty-result {
+                position: absolute;
+                bottom: 80px;
+                left: 80px;
+                width: 120px;
+                text-align: center;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    left: -48px;
+                    bottom: -25px;
+                    width: 38px;
+                    height: 38px;
+                    background-image: url('/resources/images/down-arrow.png');
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    transform: scaleX(-1);
+                }
+            }
+        }
+
+        .add-new {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 45px;
+            border-top: 1px solid rgba($secondary-color, 0.3);
+            background-color: $bg-color;
+            z-index: 1;
+            .add-new-btn {
+                padding: 0 20px;
+                color: $third-color;
+                background-color: transparent;
+                border: none;
+                line-height: 45px;
+                cursor: pointer;
+                transition: color ease 0.3s;
+
+                &:hover {
+                    color: $accent-color;
                 }
             }
         }

@@ -1,4 +1,4 @@
-<div class="forms-section">
+<div>
     <x-loader></x-loader>
     <div class="update-form">
         <form action="/" method="POST" wire:submit.prevent="update">
@@ -43,7 +43,6 @@
             <div class="form__actions">
                 <button class="form__button" type="submit">Update</button>
                 <button class="form__button cancel" wire:click.prevent="cancel">Cancel</button>
-                {{-- <button class="form__button delete" wire:click.prevent="delete{{ $entries->id }}"><i class="fa-solid fa-trash"></i></button> --}}
             </div>
         </form>
     </div>

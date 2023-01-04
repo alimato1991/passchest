@@ -2,7 +2,7 @@
 
 .primary-menu {
     position: relative;
-    width: 200px;
+    flex: 0 0 200px;
     padding-bottom: 50px;
     border-radius: 20px 0 0 20px;
     background-color: rgba($primary-color, 0.5);
@@ -60,15 +60,6 @@
         display: flex;
         justify-content: center;
         color: $third-color;
-
-        &:before {
-            content: '';
-            position: absolute;
-            height: 1px;
-            left: 0;
-            right: 0;
-            background-color: rgba($third-color, 0.6);
-        }
 
         .profile {
             display: flex;

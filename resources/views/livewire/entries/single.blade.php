@@ -1,4 +1,4 @@
-<div class="forms-section">
+<div>
     <x-loader></x-loader>
     <div class="single-item-container">
         <h2>{{ $entry->name }}</h2>
@@ -20,7 +20,7 @@
                 <div class="item-title">{{ $entry->note }}</div>
             </div>
         </div>
-        <button class="form__button" wire:click.prevent="edit({{ $entry->id }})">Edit</button>
-        <button class="form__button" wire:click.prevent="delete({{ $entry->id }})">Delete</button>
+        <button class="form__button edit" wire:click.prevent="edit({{ $entry->id }})"><i class="fa-solid fa-pencil"></i> Edit</button>
+        <button class="form__button delete" wire:click.prevent="delete({{ $entry->id }})"><i class="fa-solid fa-trash"></i> Trash</button>
     </div>
 </div>

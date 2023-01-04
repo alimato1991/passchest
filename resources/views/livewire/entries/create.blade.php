@@ -1,4 +1,4 @@
-<div class="forms-section">
+<div>
     <x-loader></x-loader>
     <div class="add-form">
         <form action="/" method="POST" wire:submit.prevent="store">
