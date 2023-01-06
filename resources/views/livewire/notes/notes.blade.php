@@ -24,16 +24,22 @@
             </form>
         </div>
         <div class="entry-list">
-            @foreach ($notes as $note )
-            <div wire:key="note-{{ $note->id }}">
-                <div class="entry-item" wire:click="show({{ $note->id }})">
-                    <div class="entry">
-                        <div class="entry-name">{{ $note->title }}</div>
-                        <div class="entry-email">{{ $note->note }}</div>
+            @unless (count($notes) == 0)
+                @foreach ($notes as $note )
+                <div wire:key="note-{{ $note->id }}">
+                    <div class="entry-item" wire:click="show({{ $note->id }})">
+                        <div class="entry">
+                            <div class="entry-name">{{ $note->title }}</div>
+                            <div class="entry-email">{{ $note->note }}</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            @endforeach
+                @endforeach
+            @else
+                <div class="empty-result">
+                    <span>Click the + below to add a login</span>
+                </div>
+            @endunless
         </div>
         <div class="add-new">
             <button class="add-new-btn" wire:click="addNew"><i class="fa-solid fa-plus"></i> Add New</button>

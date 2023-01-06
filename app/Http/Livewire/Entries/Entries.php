@@ -2,9 +2,11 @@
 
 namespace App\Http\Livewire\Entries;
 
+use App\Models\User;
 use App\Models\Entry;
 use Livewire\Component;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class Entries extends Component
 {
@@ -13,12 +15,20 @@ class Entries extends Component
     public $singleMode = false;
     public $addNew = false;
 
+    protected $rules = [
+        'name' => 'required',
+        'email' => 'required',
+        'password' => 'required',
+        'website' => 'required',
+        'note' => 'required'
+    ];
+
     /**
      * Get all the saved account details
      */
     public function render()
     {
-        $this->entries = Entry::all();
+        $this->entries = Auth::user()->entryList;
         return view('livewire.entries.entries');
     }
 
@@ -45,20 +55,34 @@ class Entries extends Component
      */
     public function store()
     {
-        $newEntry = $this->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-            'website' => 'required',
-            'note' => 'required'
-        ]);
+        $this->validate();
 
-        Entry::create($newEntry);
+        Entry::create([
+            'user_id' => Auth::user()->id,
+            'name' => $this->name,
+            'email' => $this->email,
+            'password' => $this->password,
+            'website' => $this->website,
+            'note' => $this->note
+        ]);
 
         $this->addNew = false;
 
         session()->flash('message', 'Added');
         $this->resetInput();
+    }
+
+    /**
+     * Display a single saved account details by ID 
+     */
+    public function show($id)
+    {
+        $entry = Entry::findOrFail($id);
+        $this->entry = $entry;
+        $this->singleMode = true;
+        $this->updateMode = false;
+        $this->addNew = false;
+        $this->emit('showSingle', $entry->id);
     }
 
     /**
@@ -77,19 +101,6 @@ class Entries extends Component
     }
 
     /**
-     * Display a single saved account details by ID 
-     */
-    public function show($id)
-    {
-        $entry = Entry::findOrFail($id);
-        $this->entry = $entry;
-        $this->singleMode = true;
-        $this->updateMode = false;
-        $this->addNew = false;
-        $this->emit('showSingle', $entry->id);
-    }
-
-    /**
      * Cancel Edit or Create
      */
     public function cancel()
@@ -105,15 +116,12 @@ class Entries extends Component
      */
     public function update()
     {
-        $this->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-            'website' => 'required',
-            'note' => 'required'
-        ]);
+        $this->validate();
 
-        $entry = Entry::find($this->entry_id);
+        $user_id = Auth::user()->id;
+
+        $entry = Entry::where('id', $user_id);
+    
         $entry->update([
             'name' => $this->name,
             'email' => $this->email,

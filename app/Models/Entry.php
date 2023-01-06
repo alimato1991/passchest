@@ -10,4 +10,12 @@ class Entry extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    /**
+     * Get the user that owns the password
+     */
+    public function userEntries()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

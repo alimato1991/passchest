@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Notes;
 
 use App\Models\Note;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Notes extends Component
@@ -12,12 +13,16 @@ class Notes extends Component
     public $singleMode = false;
     public $addNew = false;
 
+    protected $rules = [
+        'title' => 'required',
+        'note' => 'required'
+    ];
     /**
      * Get all secure notes
      */
     public function render()
     {
-        $this->notes = Note::all();
+        $this->notes = Auth::user()->noteList;
         return view('livewire.notes.notes');
     }
 
@@ -42,17 +47,31 @@ class Notes extends Component
      */
     public function store()
     {
-        $newNote = $this->validate([
-            'title' => 'required',
-            'note' => 'required'
-        ]);
+        $this->validate();
 
-        Note::create($newNote);
+        Note::create([
+            'user_id' => Auth::user()->id,
+            'title' => $this->title,
+            'note' => $this->note_text
+        ]);
 
         $this->addNew = false;
 
         session()->flash('message', 'Added');
         $this->resetInput();
+    }
+
+    /**
+     * Display a single secure note
+     */
+    public function show($id)
+    {
+        $note = Note::findOrFail($id);
+        $this->note = $note;
+        $this->updateMode = false;
+        $this->singleMode = true;
+        $this->addNew = false;
+        $this->emit('showSingle', $note->id);
     }
 
     /**
@@ -70,19 +89,6 @@ class Notes extends Component
     }
 
     /**
-     * Display a single secure note
-     */
-    public function show($id)
-    {
-        $note = Note::findOrFail($id);
-        $this->note = $note;
-        $this->updateMode = false;
-        $this->singleMode = true;
-        $this->addNew = false;
-        $this->emit('showSingle', $note->id);
-    }
-
-    /**
      * Cancel edit or create
      */
     public function cancel()
@@ -97,12 +103,12 @@ class Notes extends Component
      */
     public function update()
     {
-        $this->validate([
-            'title' => 'required',
-            'note' => 'required'
-        ]);
+        $this->validate();
 
-        $note = Note::find($this->note_id);
+        $user_id = Auth::user()->id;
+
+        $note = Note::where('id', $user_id);
+
         $note->update([
             'title' => $this->title,
             'note' => $this->note_text

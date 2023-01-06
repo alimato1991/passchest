@@ -12,8 +12,8 @@
                 <span class="validation">@error('title'){{ $message }}@enderror</span>
             </div>
             <div class="form__input">
-                <label for="note_text">Note:</label>
-                <textarea name="note_text" id="note_text" cols="30" rows="10" wire:model.defer="note"></textarea>
+                <label for="note">Note:</label>
+                <textarea name="note" id="note_text" cols="30" rows="10" wire:model.defer="note"></textarea>
                 <span class="validation">@error('note'){{ $message }}@enderror</span>
             </div>
             <div class="form__actions">

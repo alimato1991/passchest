@@ -41,4 +41,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get entry details for the user 
+     */
+    public function entryList()
+    {
+        return $this->hasMany(Entry::class);
+    }
+
+    /**
+     * Get notes for the user
+     */
+    public function noteList()
+    {
+        return $this->hasMany(Note::class);
+    }
 }
